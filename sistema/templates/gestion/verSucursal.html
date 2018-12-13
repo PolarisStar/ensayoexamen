@@ -1,0 +1,27 @@
+{% extends "maqueta.html" %}
+{% load static %}
+{% block imports %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
+{% endblock %}
+{% block content %}
+{% if sucursal %}
+<table>
+	<tr>
+		<th>Código</th>
+		<th>Nombre</th>
+		<th>Ubicación</th>
+		<th>Correo electrónico</th>
+		<th>Teléfono</th>
+	</tr>
+	<tr>
+		<td>{{ sucursal.codigo }}</td>
+		<td>{{ sucursal.nombre }}</td>
+		<td>{{ sucursal.direccion }}, {{ sucursal.comuna }}, {{ sucursal.ciudad }}</td>
+		<td>{{ sucursal.correo }}</td>
+		<td>{{ sucursal.telefono }}</td>
+	</tr>
+</table>
+{% else %}
+<p>Lo sentimos, la sucursal que desea ver no existe.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+.cont1{
+  width:50%;
+	margin:auto;
+	padding-top: 100px;
+	display:flex;
+	flex-flow:row wrap;
+	max-width:1000px;
+}
+.cont2{
+  width:50%;
+	margin:auto;
+	padding-top: 100px;
+	display:flex;
+	flex-flow:row wrap;
+}
+
+.cont1 .izquierda{
+  background: #73A2A6;
+  width:70%;
+	margin:30px;
+	padding-top: 100px;
+	display:flex;
+	flex-flow:row wrap;
+}
+.cont1 .derecha{
+  background: #D7F4EC;
+  width:30%;
+	margin:auto;
+	padding-top: 100px;
+	display:flex;
+	flex-flow:row wrap;
+}
+.cont2 .abajo{
+  background: #96D1B8;
+  width:100%;
+  margin:auto;
+  padding-top: 100px;
+  display:flex;
+  flex-flow:row wrap;
+}

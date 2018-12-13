@@ -1,0 +1,88 @@
+{% load pwa %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	{% progressive_web_app_meta %}
+	<meta charset="utf-8">
+	<meta name="description" content="Tienda electrónica Electronic Solutions"><!--Utilizamos el descriptor en meta para apoyar la busqueda de contenidos en la web-->
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximun-scale=1.0,minimun-scale=1.0"><!--las escalas indican un punto inicial, la escala maxima y minima-->
+	<title>{{ titulo }} | Electronic Solutions</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/prefix.js' %}" type="test/javascript"></script><!--Script para asegurarq eu en todos los navegadores y dispositivos el sitio se vea igual-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/idb.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/idbop.js' %}"></script>
+	{% block imports %}{% endblock %}
+</head>
+<body>
+	<div class="topbar">
+		<div class="topcontainer">
+			<ul style="margin-right: 10px">
+				{% if not user.is_authenticated %}
+				<li><a href="{% url 'login' %}">Iniciar Sesion</a></li>
+				{% else %}
+				<a href="{% url 'logout'%}">Salir</a>
+				{% endif %}
+				<li><a>Contacto</a></li>
+				<li><a><img src="{% static 'images/facebook.png' %}"></a></li>
+				<li><a><img src="{% static 'images/twitter.png' %}"></a></li>
+			</ul>
+		</div>
+	</div>
+	{% if user.is_authenticated %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/gestion.css' %}">
+	<div id="left-side">
+		<div class="logo">
+			<img src="{% static 'images/logo.png' %}" alt="Logo Electronic Solutions">
+			<img src="{% static 'images/logo_gestion.png' %}" alt="Logo de Gestionando" height="60" width="60" align=right>
+		</div>
+		<nav class="navbar">
+			<div class="dropdown">
+				<button class="dropbtn">Mantenimiento<i class="fa fa-caret-down"></i></button>
+				<div class="dropdown-content">
+					<a href="{% url 'gestion_productos' %}">Gestión de productos</a>
+					<a href="{% url 'gestion_ofertas' %}">Gestión de ofertas</a>
+					{% if es_encargado or user.is_staff %}
+					<a href="{% url 'gestion_vendedores' %}">Gestión de vendedores</a>
+					{% endif %}
+					{% if user.is_staff %}
+					<a href="{% url 'gestion_sucursales' %}">Gestión de sucursales</a>
+					{% endif %}
+				</div>
+			</div>
+			<a href="{% url 'modulo_ventas' %}">Ventas</a>
+		</nav>
+	</div>
+  {% else %}
+	<div class="contenedor">
+		<header>
+			<div class="logo">
+				<img src="{% static 'images/logo.png' %}" width="150" alt="150">
+			</div>
+
+			<nav>
+				<a href="{% url 'index'%}">Inicio</a>
+				<a class="padre" href="{% url 'Tienda' %}">Tienda</a>
+					<ul class="desplg">
+						<a href="#">Tienda</a>
+						<a href="#">Tienda</a>
+					</ul>
+				<a href="{% url 'Ofertas'%}">Ofertas</a>
+			</nav>
+		</header>
+	{% endif %}
+
+
+		<div class="main">
+			{% block content %}{% endblock %}
+		</div>
+	</div>
+
+
+	<footer>
+		<p>Desarrollador por Raul Flores, Jorge Fuica, Manuel Yavar, Francisco Ramirez</p>
+	</footer>
+</body>
+</html>

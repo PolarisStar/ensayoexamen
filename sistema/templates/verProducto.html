@@ -1,0 +1,25 @@
+{% extends "maqueta.html" %}
+{% block content %}
+{% if producto %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
+<table>
+	<tr>
+		<th>Código</th>
+		<th>Nombre</th>
+		<th>Descripción</th>
+		<th>Precio</th>
+		<th>Foto</th>
+	</tr>
+	<tr>
+		<td>{{ producto.codigo }}</td>
+		<td>{{ producto.nombre }}</td>
+		<td>{{ producto.descripcion }}</td>
+		<td>{{ producto.precio }}</td>
+		<td><img src="{{ producto.foto.url }}" width="200px" alt="Foto de {{ producto.nombre }}"></td>
+	</tr>
+</table>
+{% else %}
+<p>Lo sentimos, el producto que desea ver no existe.</p>
+{% endif %}
+{% endblock %}
