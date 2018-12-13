@@ -52,7 +52,8 @@ def iniciar_sesion(request):
 	form = LoginForm() # Se instancia el formulario
 	return render(request, "login.html", { "titulo": "Iniciar sesión", "form": form, "login_fail": login_fail }) # Retorna la vista solicitada
 
-# Cierre de sesión
+# Cierre de 
+@login_required
 def cerrar_sesion(request):
 	if request.user.is_authenticated: # Verifica si el usuario tiene la sesión abierta
 		logout(request) # Se cierra la sesión del usuario
@@ -67,12 +68,12 @@ def menu_gestion(request):
 Gestión de productos
 """
 @login_required
-@staff_member_required
+#@staff_member_required
 def gestion_productos(request):
 	return render(request, "gestion/gestionProductos.html", { "titulo": "Gestión de productos" })
 
 @login_required
-@staff_member_required
+#@staff_member_required
 def registrar_producto(request):
 	if request.method == "POST": # Verifica si la solicitud de esta vista lleva consigo el envío de formulario
 		form = ProductoForm(request.POST, request.FILES) # Se instancia el formulario pasando como parámetro los datos ingresados
@@ -219,7 +220,7 @@ def registrar_sucursal(request):
 	return render(request, "gestion/registrarSucursal.html", { "titulo": "Registrar una sucursal", "form": form })
 
 @login_required
-@staff_member_required
+#@staff_member_required
 def ver_sucursal(request, pk):
 	try:
 		sucursal = Sucursal.objects.get(codigo = pk) # Obtiene la sucursal solicitada con el identificador que se pasa como parámetro
