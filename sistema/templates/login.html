@@ -5,7 +5,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="loginbox" align="center">
+	<div class="loginbox" align="center">
+	{% if user.is_authenticated %}
+
+	  <form method="post" action="{% url 'logout' %}">
+
+	   {% csrf_token %}
+
+	   Bienvenido: {{user}}
+
+	   <input type="submit" value="Salir" />
+
+	   <input type="hidden" name="next" value="{% url 'maqueta.html' %}">
+
+	  </form>
+
+	{% else %}
+
 	<form method="POST" class="loginform">
 		{% csrf_token %}
 		<table class="tableform">
@@ -16,12 +32,22 @@
 				<td width="20%">{{ field.errors }}</td>
 			</tr>
 			{% endfor %}
-		</table>
-		<p align="center"><input  class="campo boton" type="submit" value="Ingresar">
-		<p align="center">¿Olvidaste tu Contraseña? <a href="http://localhost:8000/cuentas/recuperarpass/">Click Aqui</a>
-	</form>
-	<br>
+				<br>
 	<p align="center">-------- ó --------</p>
 	<br>
 <p align="center"><a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'images/fb-login.png' %}" width="215px" alt="fb"></a>
+		</table>
+		<p align="center"><input  class="campo boton" type="submit" value="{% url 'login' %}">
+		<p align="center">¿Olvidaste tu Contraseña? <a href="http://localhost:8000/cuentas/recuperarpass/">Click Aqui</a>
+			<br>
+	<p align="center">-------- ó --------</p>
+	<br>
+<p align="center"><a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'images/fb-login.png' %}" width="215px" alt="fb"></a>
+	{% endif %}	
+	
+	</div>
+
 {% endblock %}
+
+
+  
