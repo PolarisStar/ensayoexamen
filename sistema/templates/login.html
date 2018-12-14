@@ -16,7 +16,7 @@
 
 	   <input type="submit" value="Salir" />
 
-	   <input type="hidden" name="next" value="{% url 'maqueta.html' %}">
+	   <input type="hidden" name="next" value="{% url 'index' %}">
 
 	  </form>
 
@@ -33,11 +33,8 @@
 			</tr>
 			{% endfor %}
 				<br>
-	<p align="center">-------- ó --------</p>
-	<br>
-<p align="center"><a href="{% url 'social:begin' 'facebook' %}"><img src="{% static 'images/fb-login.png' %}" width="215px" alt="fb"></a>
 		</table>
-		<p align="center"><input  class="campo boton" type="submit" value="{% url 'login' %}">
+		<p align="center"><input  class="campo boton" type="submit" action="{% url 'menu_gestion' %}">
 		<p align="center">¿Olvidaste tu Contraseña? <a href="http://localhost:8000/cuentas/recuperarpass/">Click Aqui</a>
 			<br>
 	<p align="center">-------- ó --------</p>

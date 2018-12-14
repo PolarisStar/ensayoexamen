@@ -1,14 +1,17 @@
 {% extends "maqueta.html" %}
+{% load static %}
+{% block imports %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
+{% endblock %}
 {% block content %}
 {% if producto %}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/tablas.css' %}">
 <table>
 	<tr>
 		<th>Código</th>
 		<th>Nombre</th>
 		<th>Descripción</th>
 		<th>Precio</th>
+		<th>Tipo</th>
 		<th>Foto</th>
 	</tr>
 	<tr>
@@ -16,6 +19,7 @@
 		<td>{{ producto.nombre }}</td>
 		<td>{{ producto.descripcion }}</td>
 		<td>{{ producto.precio }}</td>
+		<td>{{ producto.tipo }}</td>
 		<td><img src="{{ producto.foto.url }}" width="200px" alt="Foto de {{ producto.nombre }}"></td>
 	</tr>
 </table>

@@ -34,6 +34,7 @@ def es_encargado():
 	else:
 		return false;
 # Inicio de sesión
+
 def iniciar_sesion(request):
 	if request.user.is_authenticated: # Verifica si el usuario tiene la sesión abierta
 		return redirect("index") # En caso de que sea verdadero redirecciona a la página principal
